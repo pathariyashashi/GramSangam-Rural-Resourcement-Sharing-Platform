@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GramSangam</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            overflow-x:hidden;
+        }
+
+        .hero{
+            min-height:90vh;
+            background:
+            linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+            url("https://images.unsplash.com/photo-1500937386664-56d1dfef3854");
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            color:white;
+        }
+
+        .service-card{
+            transition:0.3s;
+        }
+
+        .service-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .stats-card{
+            border:none;
+            border-radius:15px;
+        }
+
+        .stats-card:hover{
+            transform:scale(1.03);
+            transition:0.3s;
+        }
+
+        .section-title{
+            font-weight:bold;
+            margin-bottom:30px;
+        }
+
+    </style>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-dark bg-success shadow">
+
+<div class="container-fluid">
+
+<a class="navbar-brand fw-bold ms-3" href="/">
+🌾 GramSangam
+</a>
+
+{% if user.is_authenticated %}
+
+<button
+class="btn btn-light me-3"
+type="button"
+data-bs-toggle="offcanvas"
+data-bs-target="#menu">
+
+☰
+
+</button>
+
+{% else %}
+
+<div class="me-3">
+
+<a href="{% url 'login' %}"
+class="btn btn-light me-2">
+
+Login
+
+</a>
+
+<a href="{% url 'register' %}"
+class="btn btn-warning">
+
+Register
+
+</a>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</nav>
+
+
+{% if user.is_authenticated %}
+
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     id="menu">
+
+<div class="offcanvas-header bg-success text-white">
+
+<h4 class="mb-0">
+🌾 GramSangam
+</h4>
+
+<button
+type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="offcanvas">
+</button>
+
+</div>
+
+<div class="offcanvas-body">
+
+<a href="{% url 'home' %}"
+class="btn btn-outline-success w-100 mb-3">
+
+ Home
+
+</a>
+
+<a href="{% url 'my_bookings' %}"
+class="btn btn-secondary w-100 mb-3">
+
+ My Bookings
+
+</a>
+
+<a href="{% url 'my_transport_bookings' %}"
+class="btn btn-info w-100 mb-3">
+
+ My Transport Bookings
+
+</a>
+
+<a href="{% url 'equipment' %}"
+class="btn btn-success w-100 mb-3">
+
+   My Equipment
+
+</a>
+
+<a href="{% url 'worker_list' %}"
+class="btn btn-warning w-100 mb-3">
+
+   My Workers
+
+</a>
+
+<a href="{% url 'owner_dashboard' %}"
+class="btn btn-dark w-100 mb-3">
+
+ Owner Dashboard
+
+</a>
+
+<a href="{% url 'logout' %}"
+class="btn btn-danger w-100">
+
+ Logout
+
+</a>
+
+</div>
+
+</div>
+
+{% endif %}
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1 class="display-2 fw-bold">
+            GramSangam
+        </h1>
+
+        <h4 class="mb-4">
+            किसान, संसाधन और सेवाओं का डिजिटल संगम
+        </h4>
+
+        <p class="lead">
+            Equipment Rental • Worker Hiring • Transport Booking • Education Hub
+        </p>
+
+        <div class="mt-4">
+
+            <a href="{% url 'equipment' %}" class="btn btn-success btn-lg me-2">
+     Rent Equipment
+</a>
+
+<a href="{% url 'worker_list' %}" class="btn btn-warning btn-lg me-2">
+     Hire Workers
+</a>
+
+<a href="{% url 'transport' %}" class="btn btn-primary btn-lg me-2">
+     Book Transport
+</a>
+
+<a href="{% url 'education' %}" class="btn btn-danger btn-lg">
+     Education 
+</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- LIVE STATS -->
+
+<section class="container my-5">
+
+    <h2 class="text-center section-title">
+        📊 Live Platform Statistics
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card stats-card shadow text-center p-4">
+                <h1>125</h1>
+                <h5> Equipment</h5>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stats-card shadow text-center p-4">
+                <h1>340</h1>
+                <h5> Workers</h5>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stats-card shadow text-center p-4">
+                <h1>85</h1>
+                <h5> Vehicles</h5>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stats-card shadow text-center p-4">
+                <h1>1200</h1>
+                <h5> Bookings</h5>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="container my-5">
+
+    <h2 class="text-center section-title">
+        🌾 Our Services
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card service-card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h1>🚜</h1>
+
+                    <h4>Equipment Rental</h4>
+
+                    <p>
+                        Tractor, Harvester, Rotavator,
+                        Bore Machine and more.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card service-card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h1>👨‍🌾</h1>
+
+                    <h4>Worker Hiring</h4>
+
+                    <p>
+                        Harvesting workers,
+                        tractor drivers and labor.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card service-card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h1>🚚</h1>
+
+                    <h4>Transport Booking</h4>
+
+                    <p>
+                        Pickup, Tempo,
+                        Tractor Trolley booking.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card service-card shadow h-100">
+                <div class="card-body text-center">
+
+                    <h1>📚</h1>
+
+                    <h4>Education Hub</h4>
+
+                    <p>
+                        Farming knowledge,
+                        government schemes and guides.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- EDUCATION HUB -->
+
+<section class="container my-5">
+
+    <h2 class="text-center section-title">
+        Sources
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <h1>🌱</h1>
+                    <h5>Organic Farming</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <h1>💧</h1>
+                    <h5>Water Management</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <h1>🏛️</h1>
+                    <h5>Govt School Management</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <h1>🚜</h1>
+                    <h5>Equipment Guide</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section class="bg-light py-5">
+
+    <div class="container">
+
+        <h2 class="text-center section-title">
+            ⭐ Farmer Reviews
+        </h2>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <div class="card shadow">
+
+                    <div class="card-body">
+
+                        ⭐⭐⭐⭐⭐
+
+                        <p>
+                            GramSangam helped me find workers quickly.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card shadow">
+
+                    <div class="card-body">
+
+                        ⭐⭐⭐⭐⭐
+
+                        <p>
+                            Easy equipment booking and transport service.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="bg-success text-white text-center p-4">
+
+    <h4>🌾 GramSangam</h4>
+
+    <p>
+        किसान, संसाधन और सेवाओं का डिजिटल संगम
+    </p>
+
+    <p>
+        Village Development Through Technology
+    </p>
+
+</footer>
+
+</body>
+</html>
+
